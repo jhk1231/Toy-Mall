@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        spring = "org.springframework"
+        boot = "${spring}.boot"
+        bootVersion = "3.0.5"
+        lombok = "org.projectlombok:lombok"
+
+        set('springBootVersion', '3.0.5')
+        set('springCloudVersion', '2022.0.1')
+        set('querydslVersion', '5.0.0')
+        set('asciidoctorConvertVersion', '3.0.0')
+        set('logback.version', '1.4.6')
+        set('log4j2.version', '2.19.0')
+        set('slf4j.version', '2.0.7')
+    }
+
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "$boot:spring-boot-gradle-plugin:${springBootVersion}"
+//        classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+    }
+
+}
+
+allprojects {
+    group = 'com.store'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: "java-library"
+//    apply plugin: "maven"
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = '17'
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

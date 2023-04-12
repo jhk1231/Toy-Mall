@@ -1,0 +1,27 @@
+rootProject.name = 'jh-mall'
+include 'mall-api'
+include 'mall-test'
+include 'mall-server'
+include 'mall-domain'
+include 'mall-auth'
+
+def file(dir, name) {
+    return file("${dir.absolutePath}/${name}")
+}
+
+
+def GRADLE_TEXT = """
+
+    dependencies {
+    
+    }
+    
+"""
+
+["mall-test", "mall-api", "mall-server", "mall-domain"].forEach(moduleName -> {
+    def moduleDir = file(rootDir, moduleName);
+    if (!moduleDir.exists()) {
+        moduleDir.mkdirs()
+    }
+
+})
