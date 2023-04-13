@@ -1,5 +1,4 @@
 rootProject.name = 'jh-mall'
-include 'mall-api'
 include 'mall-test'
 include 'mall-server'
 include 'mall-domain'
