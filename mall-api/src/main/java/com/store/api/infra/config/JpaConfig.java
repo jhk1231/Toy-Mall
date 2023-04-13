@@ -1,4 +1,4 @@
-package com.store.api.infra;
+package com.store.api.infra.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
