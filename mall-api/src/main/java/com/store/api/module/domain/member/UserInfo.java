@@ -36,6 +36,14 @@ public class UserInfo extends BaseTimeEntity implements Persistable<String> {
     @Comment("고객관리고유키")
     private String id;
 
+    @Column(name = "user_id", nullable = false)
+    @Comment("회원 ID")
+    private String userId;
+
+    @Column(name = "password", nullable = false)
+    @Comment("비밀번호")
+    private String password;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @Column(name = "registration_date", nullable = false)
     @Comment("가입일자")
@@ -57,10 +65,14 @@ public class UserInfo extends BaseTimeEntity implements Persistable<String> {
 
 
     @Builder(access = PUBLIC)
-    UserInfo(LocalDate registrationDate,
+    UserInfo(String userId,
+             String password,
+             LocalDate registrationDate,
              UserStatus status,
              String pauseReason,
              LocalDate pauseDate) {
+        this.userId = userId;
+        this.password = password;
         this.registrationDate = registrationDate;
         this.status = status;
         this.pauseReason = pauseReason;
