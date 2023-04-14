@@ -11,8 +11,7 @@ spring:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
-#      ddl-auto: validate
+      ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         show-sql: true

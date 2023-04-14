@@ -26,6 +26,11 @@ public class MallException extends RuntimeException {
         this.error = error;
     }
 
+    public MallException(String message, Throwable cause, MallError error) {
+        super(message, cause);
+        this.error = error;
+    }
+
     public MallException(String message, MallError error, String httpStatus, Integer httpStatusCode) {
         super(message);
         this.error = error;
