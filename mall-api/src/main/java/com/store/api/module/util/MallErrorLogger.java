@@ -1,7 +1,7 @@
 package com.store.api.module.util;
 
-import com.store.api.module.essential.error.MallBadRequestException;
-import com.store.api.module.essential.error.MallException;
+import com.store.api.module.system.error.MallBadRequestException;
+import com.store.api.module.system.error.MallException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

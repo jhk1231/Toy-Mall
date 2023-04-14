@@ -1,6 +1,6 @@
 package com.store.api.module.util;
 
-import com.store.api.module.common.status.UserStatus;
+import com.store.api.module.member.common.status.UserStatus;
 
 import java.time.LocalDate;
 import java.util.UUID;

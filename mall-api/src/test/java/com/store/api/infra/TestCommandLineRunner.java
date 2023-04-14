@@ -1,7 +1,7 @@
 package com.store.api.infra;
 
-import com.store.api.module.domain.member.UserInfo;
-import com.store.api.module.repositories.member.UserInfoRepository;
+import com.store.api.module.member.domain.UserInfo;
+import com.store.api.module.member.repositoires.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;

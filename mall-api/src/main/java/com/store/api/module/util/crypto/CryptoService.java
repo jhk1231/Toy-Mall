@@ -1,11 +1,11 @@
 package com.store.api.module.util.crypto;
 
-import com.store.api.module.essential.error.MallException;
+import com.store.api.module.system.error.MallException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import static com.store.api.module.essential.error.EssentialError.PW_DECRYPT_FAILURE;
-import static com.store.api.module.essential.error.EssentialError.PW_ENCRYPT_FAILURE;
+import static com.store.api.module.system.error.EssentialError.PW_DECRYPT_FAILURE;
+import static com.store.api.module.system.error.EssentialError.PW_ENCRYPT_FAILURE;
 
 @Component
 public class CryptoService {
