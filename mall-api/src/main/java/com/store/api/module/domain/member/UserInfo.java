@@ -1,18 +1,13 @@
 package com.store.api.module.domain.member;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.store.api.module.domain.common.BaseTimeEntity;
 import com.store.api.module.common.status.UserStatus;
+import com.store.api.module.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.domain.Persistable;
 
 import java.time.LocalDate;
 
@@ -23,18 +18,8 @@ import static lombok.AccessLevel.PUBLIC;
  */
 @Entity
 @Table(name = "user_info")
-@DynamicInsert
-@DynamicUpdate
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
-public class UserInfo extends BaseTimeEntity implements Persistable<String> {
-
-    @Id
-    @GenericGenerator(name = "mall-uuid", strategy = "com.store.api.module.util.UUIDGenerator")
-    @GeneratedValue(generator = "mall-uuid")
-    @Column(length = 32, nullable = false)
-    @Comment("고객관리고유키")
-    private String id;
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class UserInfo extends BaseEntity {
 
     @Column(name = "user_id", nullable = false)
     @Comment("회원 ID")
@@ -79,13 +64,4 @@ public class UserInfo extends BaseTimeEntity implements Persistable<String> {
         this.pauseDate = pauseDate;
     }
 
-    @Override
-    public String getId() {
-        return getId();
-    }
-
-    @Override
-    public boolean isNew() {
-        return this.updatedDate == null;
-    }
 }
