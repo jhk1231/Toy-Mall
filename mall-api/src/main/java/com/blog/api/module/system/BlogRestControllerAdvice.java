@@ -2,10 +2,10 @@ package com.blog.api.module.system;
 
 import com.blog.api.module.system.error.dto.DefaultErrorResponseDto;
 import com.blog.api.module.system.error.dto.InvalidResponseDto;
-import com.blog.api.module.system.error.MallBadRequestException;
-import com.blog.api.module.system.error.MallError;
-import com.blog.api.module.system.error.MallException;
-import com.blog.api.module.util.MallErrorLogger;
+import com.blog.api.module.system.error.BlogBadRequestException;
+import com.blog.api.module.system.error.BlogError;
+import com.blog.api.module.system.error.BlogException;
+import com.blog.api.module.util.BlogErrorLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -22,12 +22,12 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestControllerAdvice
 @Slf4j
-public class MallRestControllerAdvice {
+public class BlogRestControllerAdvice {
 
-    @ExceptionHandler(MallBadRequestException.class)
-    ResponseEntity<ApiResponseDto<InvalidResponseDto>> handleMallBadRequestException(MallBadRequestException ex) {
+    @ExceptionHandler(BlogBadRequestException.class)
+    ResponseEntity<ApiResponseDto<InvalidResponseDto>> handleMallBadRequestException(BlogBadRequestException ex) {
 
-        MallErrorLogger.log(ex);
+        BlogErrorLogger.log(ex);
 
         final List<String> fieldErrors = new ArrayList<>();
         final BindingResult bindingResult = ex.getBindingResult();
@@ -55,12 +55,12 @@ public class MallRestControllerAdvice {
     }
 
 
-    @ExceptionHandler(MallException.class)
-    ResponseEntity<ApiResponseDto<?>> handleMallException(MallException ex) {
+    @ExceptionHandler(BlogException.class)
+    ResponseEntity<ApiResponseDto<?>> handleMallException(BlogException ex) {
 
-        MallErrorLogger.log(ex);
+        BlogErrorLogger.log(ex);
 
-        final MallError error = ex.getError();
+        final BlogError error = ex.getError();
         final Throwable cause = ex.getCause();
 
         final DefaultErrorResponseDto data = new DefaultErrorResponseDto();
@@ -81,7 +81,7 @@ public class MallRestControllerAdvice {
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiResponseDto<DefaultErrorResponseDto>> handleException(Exception ex) {
 
-        MallErrorLogger.log(ex);
+        BlogErrorLogger.log(ex);
 
         final DefaultErrorResponseDto data = DefaultErrorResponseDto.builder()
                 .detailMessage(ex.getMessage())

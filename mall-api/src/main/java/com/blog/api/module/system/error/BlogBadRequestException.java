@@ -6,11 +6,11 @@ import org.springframework.validation.BindingResult;
 
 @Getter
 @NoArgsConstructor
-public class MallBadRequestException extends RuntimeException {
+public class BlogBadRequestException extends RuntimeException {
 
     private BindingResult bindingResult;
 
-    public MallBadRequestException(BindingResult bindingResult) {
+    public BlogBadRequestException(BindingResult bindingResult) {
         this.bindingResult = bindingResult;
     }
 }

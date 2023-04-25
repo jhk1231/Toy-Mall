@@ -1,6 +1,6 @@
 package com.blog.api.module.system.error;
 
-public interface MallError {
+public interface BlogError {
 
     String getErrorCode();
 

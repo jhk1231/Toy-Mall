@@ -1,6 +1,6 @@
 package com.blog.api.module.util.crypto;
 
-import com.blog.api.module.system.error.MallException;
+import com.blog.api.module.system.error.BlogException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class CryptoService {
         try {
             return pwCryptoUtils.encrypt(plain);
         } catch (Exception ex) {
-            throw new MallException("[PW]암호화 실패", ex, PW_ENCRYPT_FAILURE);
+            throw new BlogException("[PW]암호화 실패", ex, PW_ENCRYPT_FAILURE);
         }
     }
 
@@ -29,7 +29,7 @@ public class CryptoService {
         try {
             return pwCryptoUtils.decrypt(cipher);
         } catch (Exception ex) {
-            throw new MallException("[PW]복호화 실패", ex, PW_DECRYPT_FAILURE);
+            throw new BlogException("[PW]복호화 실패", ex, PW_DECRYPT_FAILURE);
         }
     }
 

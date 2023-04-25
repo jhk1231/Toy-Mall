@@ -1,6 +1,6 @@
 package com.blog.api.module.system.error;
 
-public enum EssentialError implements MallError {
+public enum EssentialError implements BlogError {
 
 
     UNKNOWN("ERR_UNKNOWN", "알 수 없는 에러가 발생했습니다."),
