@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePages/HomePage';
-import StudyPage from '../pages/StudyPage';
+import StudyPage from '../pages/BoardPages/StudyPage';
 import LoginPage from 'pages/AuthPages/LoginPage';
 import JoinPage from 'pages/AuthPages/JoinPage';
 

@@ -1,6 +1,5 @@
 package com.store.api.module.system;
 
-import com.store.api.module.system.error.dto.ApiResponseDto;
 import com.store.api.module.system.error.dto.DefaultErrorResponseDto;
 import com.store.api.module.system.error.dto.InvalidResponseDto;
 import com.store.api.module.system.error.MallBadRequestException;

@@ -1,4 +1,4 @@
-package com.store.api.module.system.error.dto;
+package com.store.api.module.system;
 
 import lombok.Getter;
 import lombok.Setter;

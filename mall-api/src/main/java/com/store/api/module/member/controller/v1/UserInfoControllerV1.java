@@ -1,6 +1,6 @@
 package com.store.api.module.member.controller.v1;
 
-import com.store.api.module.system.error.dto.ApiResponseDto;
+import com.store.api.module.system.ApiResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

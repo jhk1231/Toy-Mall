@@ -1,19 +1,13 @@
 import { Link } from 'react-router-dom';
-import SideBarItem from './SideBarItem';
-
-interface MenuContent {
-  menuName: string;
-  childrens: Array<MenuContent>;
-}
 
 const SideBar = () => {
-  const menu: [{ menuName: string; childrens: unknown }] = [
+  const menu: Array<IMenu> = [
     {
-      menuName: 'hi',
+      name: 'hi',
       childrens: [],
     },
     {
-      menuName: 'hi2',
+      name: 'hi2',
       childrens: [],
     },
   ];
