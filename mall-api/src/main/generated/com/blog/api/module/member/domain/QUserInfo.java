@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QUserInfo extends EntityPathBase<UserInfo> {
 
-    private static final long serialVersionUID = 454376835L;
+    private static final long serialVersionUID = -728613762L;
 
     public static final QUserInfo userInfo = new QUserInfo("userInfo");
 
@@ -27,6 +27,8 @@ public class QUserInfo extends EntityPathBase<UserInfo> {
     //inherited
     public final StringPath id = _super.id;
 
+    public final StringPath nickname = createString("nickname");
+
     public final StringPath password = createString("password");
 
     public final DatePath<java.time.LocalDate> pauseDate = createDate("pauseDate", java.time.LocalDate.class);
@@ -35,7 +37,8 @@ public class QUserInfo extends EntityPathBase<UserInfo> {
 
     public final DatePath<java.time.LocalDate> registrationDate = createDate("registrationDate", java.time.LocalDate.class);
 
-    public final EnumPath<com.blog.api.module.member.common.status.UserStatus> status = createEnum("status", com.blog.api.module.member.common.status.UserStatus.class);
+    //inherited
+    public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = _super.status;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedDate = _super.updatedDate;

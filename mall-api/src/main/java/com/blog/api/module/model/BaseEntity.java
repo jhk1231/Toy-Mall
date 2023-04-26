@@ -1,8 +1,10 @@
 package com.blog.api.module.model;
 
+import com.blog.api.module.essential.constants.BlogEntityStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,20 +24,25 @@ import java.time.LocalDateTime;
 public class BaseEntity implements Serializable, Persistable<String> {
 
     @Id
-    @GenericGenerator(name = "mall-uuid", strategy = "com.store.api.module.util.UUIDGenerator")
-    @GeneratedValue(generator = "mall-uuid")
+    @GenericGenerator(name = "blog-uuid", strategy = "com.blog.api.module.util.UUIDGenerator")
+    @GeneratedValue(generator = "blog-uuid")
     @Column(length = 32, nullable = false)
     private String id;
+
+    @Column(name = "status", length = 10, nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    @Comment("상태")
+    private BlogEntityStatus status;
 
     @Column(name = "created_at", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @CreatedDate
-    protected LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "updated_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @LastModifiedDate
-    protected LocalDateTime updatedDate;
+    private LocalDateTime updatedDate;
 
 
     @Override

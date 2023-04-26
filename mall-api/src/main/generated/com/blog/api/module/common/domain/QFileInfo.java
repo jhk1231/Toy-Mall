@@ -1,4 +1,4 @@
-package com.blog.api.module.member.domain;
+package com.blog.api.module.common.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QManagerInfo is a Querydsl query type for ManagerInfo
+ * QFileInfo is a Querydsl query type for FileInfo
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QManagerInfo extends EntityPathBase<ManagerInfo> {
+public class QFileInfo extends EntityPathBase<FileInfo> {
 
-    private static final long serialVersionUID = -972374410L;
+    private static final long serialVersionUID = 918217472L;
 
-    public static final QManagerInfo managerInfo = new QManagerInfo("managerInfo");
+    public static final QFileInfo fileInfo = new QFileInfo("fileInfo");
 
     public final com.blog.api.module.model.QBaseEntity _super = new com.blog.api.module.model.QBaseEntity(this);
 
@@ -27,22 +27,26 @@ public class QManagerInfo extends EntityPathBase<ManagerInfo> {
     //inherited
     public final StringPath id = _super.id;
 
+    public final StringPath name = createString("name");
+
+    public final StringPath path = createString("path");
+
     //inherited
     public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = _super.status;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedDate = _super.updatedDate;
 
-    public QManagerInfo(String variable) {
-        super(ManagerInfo.class, forVariable(variable));
+    public QFileInfo(String variable) {
+        super(FileInfo.class, forVariable(variable));
     }
 
-    public QManagerInfo(Path<? extends ManagerInfo> path) {
+    public QFileInfo(Path<? extends FileInfo> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QManagerInfo(PathMetadata metadata) {
-        super(ManagerInfo.class, metadata);
+    public QFileInfo(PathMetadata metadata) {
+        super(FileInfo.class, metadata);
     }
 
 }

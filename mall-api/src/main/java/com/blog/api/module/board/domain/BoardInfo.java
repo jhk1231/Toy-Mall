@@ -1,6 +1,6 @@
 package com.blog.api.module.board.domain;
 
-import com.blog.api.module.board.common.ProductCategory;
+import com.blog.api.module.essential.constants.BlogEntityStatus;
 import com.blog.api.module.member.domain.UserInfo;
 import com.blog.api.module.model.BaseEntity;
 import jakarta.persistence.*;
@@ -20,9 +20,13 @@ import static lombok.AccessLevel.*;
 public class BoardInfo extends BaseEntity {
 
 
-//    @Column(name = "category", nullable = false)
-//    @Enumerated(EnumType.STRING)
-//    private ProductCategory category;
+    @Column(name = "name", length = 100)
+    @Comment("게시판명")
+    private String name;
+
+    @Column(name = "order", length = 4)
+    @Comment("순번")
+    private Integer order;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_info",
@@ -33,7 +37,10 @@ public class BoardInfo extends BaseEntity {
 
 
     @Builder(access = PUBLIC)
-    BoardInfo(ProductCategory category, UserInfo userInfo) {
+    BoardInfo(String name, int order, BlogEntityStatus status, UserInfo userInfo) {
+        this.name = name;
+        this.order = order;
         this.userInfo = userInfo;
+        status = status;
     }
 }
