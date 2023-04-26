@@ -3,3 +3,8 @@ export type ApiResponseType = {
   message: string;
   data: any;
 };
+
+export interface GetArticleRequestDto {
+  boardInfoNo: string;
+  issueDate?: Date;
+}
