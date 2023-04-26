@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.5'
     id 'io.spring.dependency-management' version '1.1.0'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
 group = 'com.store.blog'
@@ -18,7 +19,6 @@ ext {
     set('logback.version', '1.4.6')
     set('log4j2.version', '2.19.0')
     set('slf4j.version', '2.0.7')
-//    set('asciidoctorConvertVersion', '3.0.0')
 }
 
 
@@ -26,6 +26,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    asciidoctorExtention
 }
 
 repositories {
@@ -35,6 +36,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas:3.0.6'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
@@ -50,14 +52,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
     //lombok
-}
-
-test {
-    outputs.dir snippetsDir
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
+    asciidoctorExtention "org.springframework.restdocs:spring-restdocs-asciidoctor"
+    testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc"
 }
 
 dependencyManagement {
@@ -81,10 +77,38 @@ clean.doLast {
     file(querydslDir).deleteDir()
 }
 
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
 jar {
     enabled(false)
 }
 
 bootJar {
     enabled(true)
+}
+
+asciidoctor {
+    configurations 'asciidoctorExt'
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+asciidoctor.doFirst {
+    delete file('src/main/resources/static/docs')
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}/html5") {    // gradle build 시 ./build/asciidoc/html5/ 에 html 파일생성
+        into 'static/docs'                        // html 파일이 jar 안의 /static/docs/ 폴더로 복사됨
+    }
+    manifest {
+        attributes(
+                "Implementation-Title": "${project.name}",
+                "Implementation-Version": "${project.version}"
+        )
+    }
 }

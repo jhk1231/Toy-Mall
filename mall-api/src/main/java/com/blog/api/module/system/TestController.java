@@ -1,4 +1,4 @@
-package com.blog.api.module.board.common;
+package com.blog.api.module.system;
 
 import com.blog.api.module.system.ApiResponseDto;
 import lombok.extern.slf4j.Slf4j;

@@ -1,5 +1,7 @@
 package com.blog.api.infra;
 
+import com.blog.api.module.board.domain.BoardInfo;
+import com.blog.api.module.board.repository.BoardInfoRepository;
 import com.blog.api.module.member.domain.UserInfo;
 import com.blog.api.module.member.repositoires.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,26 @@ import static com.blog.api.module.util.TestUtils.*;
 public class TestCommandLineRunner implements CommandLineRunner {
 
     @Autowired
-    UserInfoRepository userInfoRepository;
+    UserInfoRepository user;
+
+    @Autowired
+    BoardInfoRepository board;
 
     @Override
     public void run(String... args) throws Exception {
-        userInfoRepository.saveAll(List.of(
+        user.saveAll(List.of(
                 UserInfo.builder().userId(getUserId()).password(getPassword()).registrationDate(getRegistrationDate()).status(getUserStatus()).build()
         ));
+
+        UserInfo userInfo = user.findByUserId(getUserId()).get();
+
+        BoardInfo boardInfo = BoardInfo
+                .builder()
+                .name("Spring")
+                .order(0)
+                .userInfo(userInfo)
+                .build();
+
+        board.save(boardInfo);
     }
 }

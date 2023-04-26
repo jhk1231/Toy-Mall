@@ -1,0 +1,21 @@
+:snippets: ../../../build/generated-snippets
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:app-name: jhlog-api
+
+= Jhlog API
+
+version 0.0.1 (SNAPSHOT)
+
+[[overview]]
+== 개요
+Jhlog - Jhlog Back-End API를 명세한다.
+
+
+== [API-001] 게시글 목록 조회
+
+operation::report_biz-info_save[snippets='path-parameters,request-headers,request-fields,response-headers,response-fields,curl-request,httpie-request,http-request,http-response']

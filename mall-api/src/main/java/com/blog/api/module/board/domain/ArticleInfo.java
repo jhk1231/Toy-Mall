@@ -1,7 +1,5 @@
 package com.blog.api.module.board.domain;
 
-import com.blog.api.module.board.common.ProductCategory;
-import com.blog.api.module.member.domain.UserInfo;
 import com.blog.api.module.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -9,11 +7,9 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
-import java.time.LocalDate;
-
 import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.FetchType.LAZY;
-import static lombok.AccessLevel.*;
+import static lombok.AccessLevel.PRIVATE;
+import static lombok.AccessLevel.PUBLIC;
 
 /**
  * 게시글 정보
