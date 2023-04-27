@@ -1,10 +1,23 @@
-export type ApiResponseType = {
+export interface ApiResponseType<T> {
   code: string;
   message: string;
-  data: any;
-};
+  data: Data<T>;
+}
 
-export interface GetArticleRequestDto {
-  boardInfoNo: string;
-  issueDate?: Date;
+interface Data<T> {
+  links: Array<Link>;
+  content: Array<T>;
+  page: PageModel;
+}
+
+export interface Link {
+  rel: string;
+  href: string;
+}
+
+interface PageModel {
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  number: number;
 }

@@ -34,8 +34,6 @@ const DetailPage = () => {
     },
   ];
 
-  console.log('1', apiService.getArticleList());
-
   return (
     <div>
       {data.map((item: TableListType) => {

@@ -1,22 +1,14 @@
-import axios from 'axios';
-
-const call = async () => {
-  await axios
-    .get('...')
-    .then((res) => {
-      console.log('success');
-    })
-    .catch((error) => {
-      console.log('error');
-    })
-    .then(() => {
-      console.log('always run');
-    });
-};
+import { GetArticleRequestDto, GetArticleResponseDto } from '../@types/message';
+import service from '../service/ApiAxiosService';
 
 const Test = () => {
-  call();
-  console.log('after Call');
+  const requestDto: GetArticleRequestDto = {
+    boardInfoNo: '2dv7cdqle24242ab89e45869ba5f6q33',
+  };
+
+  const response = service.getArticleList(requestDto);
+  console.log('hello');
+  console.log('test.response', response);
   return <></>;
 };
 
