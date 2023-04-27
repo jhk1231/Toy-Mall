@@ -1,6 +1,7 @@
 package com.blog.api.module.board.domain;
 
-import com.blog.api.module.model.BaseEntity;
+import com.blog.api.module.essential.constants.BaseStatus;
+import com.blog.api.module.model.BaseStatusModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import static lombok.AccessLevel.PUBLIC;
 @Entity
 @Table(name = "article_info")
 @NoArgsConstructor(access = PRIVATE)
-public class ArticleInfo extends BaseEntity {
+public class ArticleInfo extends BaseStatusModel {
 
     @Column(name = "subject", length = 100, nullable = false)
     @Comment("제목")
@@ -34,7 +35,7 @@ public class ArticleInfo extends BaseEntity {
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "board_info",
             nullable = false,
-            foreignKey = @ForeignKey(name = "FK_ARTICLE_BOARD"))
+            foreignKey = @ForeignKey(name = "FK_ARTICLE_INFO_BOARD"))
     @Comment("게시판정보")
     private BoardInfo boardInfo;
 
@@ -42,10 +43,12 @@ public class ArticleInfo extends BaseEntity {
     ArticleInfo(String subject,
                 String content,
                 String issueDate,
+                BaseStatus status,
                 BoardInfo boardInfo) {
         this.subject = subject;
         this.content = content;
         this.issueDate = issueDate;
+        this.setStatus(status);
         this.boardInfo = boardInfo;
     }
 }

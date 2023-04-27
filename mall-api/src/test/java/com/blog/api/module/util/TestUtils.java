@@ -1,6 +1,6 @@
 package com.blog.api.module.util;
 
-import com.blog.api.module.essential.constants.BlogEntityStatus;
+import com.blog.api.module.essential.constants.BaseStatus;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,7 +23,7 @@ public abstract class TestUtils {
         return LocalDate.now();
     }
 
-    public static BlogEntityStatus getUserStatus() {
-        return BlogEntityStatus.ACTIVE;
+    public static BaseStatus getUserStatus() {
+        return BaseStatus.ACTIVE;
     }
 }

@@ -19,7 +19,7 @@ public class QManagerInfo extends EntityPathBase<ManagerInfo> {
 
     public static final QManagerInfo managerInfo = new QManagerInfo("managerInfo");
 
-    public final com.blog.api.module.model.QBaseEntity _super = new com.blog.api.module.model.QBaseEntity(this);
+    public final com.blog.api.module.model.QBaseStatusModel _super = new com.blog.api.module.model.QBaseStatusModel(this);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
@@ -28,7 +28,7 @@ public class QManagerInfo extends EntityPathBase<ManagerInfo> {
     public final StringPath id = _super.id;
 
     //inherited
-    public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = _super.status;
+    public final EnumPath<com.blog.api.module.essential.constants.BaseStatus> status = _super.status;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedDate = _super.updatedDate;

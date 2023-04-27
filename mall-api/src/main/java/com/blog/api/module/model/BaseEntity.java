@@ -1,10 +1,8 @@
 package com.blog.api.module.model;
 
-import com.blog.api.module.essential.constants.BlogEntityStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
-import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -29,10 +27,7 @@ public class BaseEntity implements Serializable, Persistable<String> {
     @Column(length = 32, nullable = false)
     private String id;
 
-    @Column(name = "status", length = 10, nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    @Comment("상태")
-    private BlogEntityStatus status;
+
 
     @Column(name = "created_at", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
@@ -54,6 +49,7 @@ public class BaseEntity implements Serializable, Persistable<String> {
     public boolean isNew() {
         return this.updatedDate == null;
     }
+
 
 }
 

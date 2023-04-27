@@ -22,7 +22,7 @@ public class QArticleInfo extends EntityPathBase<ArticleInfo> {
 
     public static final QArticleInfo articleInfo = new QArticleInfo("articleInfo");
 
-    public final com.blog.api.module.model.QBaseEntity _super = new com.blog.api.module.model.QBaseEntity(this);
+    public final com.blog.api.module.model.QBaseStatusModel _super = new com.blog.api.module.model.QBaseStatusModel(this);
 
     public final QBoardInfo boardInfo;
 
@@ -37,7 +37,7 @@ public class QArticleInfo extends EntityPathBase<ArticleInfo> {
     public final StringPath issueDate = createString("issueDate");
 
     //inherited
-    public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = _super.status;
+    public final EnumPath<com.blog.api.module.essential.constants.BaseStatus> status = _super.status;
 
     public final StringPath subject = createString("subject");
 
@@ -62,7 +62,7 @@ public class QArticleInfo extends EntityPathBase<ArticleInfo> {
 
     public QArticleInfo(Class<? extends ArticleInfo> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.boardInfo = inits.isInitialized("boardInfo") ? new QBoardInfo(forProperty("boardInfo"), inits.get("boardInfo")) : null;
+        this.boardInfo = inits.isInitialized("boardInfo") ? new QBoardInfo(forProperty("boardInfo")) : null;
     }
 
 }

@@ -19,7 +19,7 @@ public class QUserInfo extends EntityPathBase<UserInfo> {
 
     public static final QUserInfo userInfo = new QUserInfo("userInfo");
 
-    public final com.blog.api.module.model.QBaseEntity _super = new com.blog.api.module.model.QBaseEntity(this);
+    public final com.blog.api.module.model.QUserStatusModel _super = new com.blog.api.module.model.QUserStatusModel(this);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
@@ -33,12 +33,13 @@ public class QUserInfo extends EntityPathBase<UserInfo> {
 
     public final DatePath<java.time.LocalDate> pauseDate = createDate("pauseDate", java.time.LocalDate.class);
 
-    public final StringPath pauseReason = createString("pauseReason");
+    //inherited
+    public final EnumPath<com.blog.api.module.essential.constants.PauseReason> pauseReason = _super.pauseReason;
 
     public final DatePath<java.time.LocalDate> registrationDate = createDate("registrationDate", java.time.LocalDate.class);
 
     //inherited
-    public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = _super.status;
+    public final EnumPath<com.blog.api.module.essential.constants.BaseStatus> status = _super.status;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedDate = _super.updatedDate;

@@ -23,8 +23,6 @@ public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
     public final StringPath id = createString("id");
 
-    public final EnumPath<com.blog.api.module.essential.constants.BlogEntityStatus> status = createEnum("status", com.blog.api.module.essential.constants.BlogEntityStatus.class);
-
     public final DateTimePath<java.time.LocalDateTime> updatedDate = createDateTime("updatedDate", java.time.LocalDateTime.class);
 
     public QBaseEntity(String variable) {

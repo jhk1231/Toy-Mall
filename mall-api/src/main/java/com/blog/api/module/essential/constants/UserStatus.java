@@ -1,6 +1,6 @@
 package com.blog.api.module.essential.constants;
 
-public enum BlogEntityStatus {
+public enum UserStatus {
 
     ACTIVE("ACTIVE"),
     DELETED("DELETED"),
@@ -10,7 +10,7 @@ public enum BlogEntityStatus {
 
     private String status;
 
-    BlogEntityStatus(String status) {
+    UserStatus(String status) {
         this.status = status;
     }
 

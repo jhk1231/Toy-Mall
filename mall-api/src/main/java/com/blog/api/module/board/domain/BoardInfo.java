@@ -1,15 +1,16 @@
 package com.blog.api.module.board.domain;
 
-import com.blog.api.module.essential.constants.BlogEntityStatus;
-import com.blog.api.module.member.domain.UserInfo;
-import com.blog.api.module.model.BaseEntity;
-import jakarta.persistence.*;
+import com.blog.api.module.essential.constants.BaseStatus;
+import com.blog.api.module.model.BaseStatusModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
-import static jakarta.persistence.FetchType.LAZY;
-import static lombok.AccessLevel.*;
+import static lombok.AccessLevel.PRIVATE;
+import static lombok.AccessLevel.PUBLIC;
 
 /**
  * 게시판 정보
@@ -17,8 +18,7 @@ import static lombok.AccessLevel.*;
 @Entity
 @Table(name = "board_info")
 @NoArgsConstructor(access = PRIVATE)
-public class BoardInfo extends BaseEntity {
-
+public class BoardInfo extends BaseStatusModel {
 
     @Column(name = "name", length = 100)
     @Comment("게시판명")
@@ -26,21 +26,15 @@ public class BoardInfo extends BaseEntity {
 
     @Column(name = "order", length = 4)
     @Comment("순번")
-    private Integer order;
-
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "user_info",
-            nullable = false,
-            foreignKey = @ForeignKey(name = "FK_USER_PRODUCT"))
-    @Comment("고객정보")
-    private UserInfo userInfo;
+    private int order;
 
 
     @Builder(access = PUBLIC)
-    BoardInfo(String name, int order, BlogEntityStatus status, UserInfo userInfo) {
+    BoardInfo(String name,
+              int order,
+              BaseStatus status) {
         this.name = name;
         this.order = order;
-        this.userInfo = userInfo;
-        status = status;
+        this.setStatus(status);
     }
 }

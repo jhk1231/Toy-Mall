@@ -1,6 +1,6 @@
 package com.blog.api.module.member.domain;
 
-import com.blog.api.module.model.BaseEntity;
+import com.blog.api.module.model.BaseStatusModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "manager_info")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ManagerInfo extends BaseEntity {
+public class ManagerInfo extends BaseStatusModel {
 }
