@@ -5,6 +5,7 @@ import com.blog.api.module.model.BaseStatusModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
@@ -18,6 +19,7 @@ import static lombok.AccessLevel.PUBLIC;
 @Entity
 @Table(name = "article_info")
 @NoArgsConstructor(access = PRIVATE)
+@Getter
 public class ArticleInfo extends BaseStatusModel {
 
     @Column(name = "subject", length = 100, nullable = false)

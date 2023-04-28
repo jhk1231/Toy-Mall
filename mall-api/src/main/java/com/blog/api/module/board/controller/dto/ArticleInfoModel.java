@@ -1,6 +1,8 @@
 package com.blog.api.module.board.controller.dto;
 
 import com.blog.api.module.essential.constants.BaseStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import org.springframework.hateoas.RepresentationModel;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ArticleInfoModel extends RepresentationModel<ArticleInfoModel> {
 
     @JsonProperty("articleInfoNo")

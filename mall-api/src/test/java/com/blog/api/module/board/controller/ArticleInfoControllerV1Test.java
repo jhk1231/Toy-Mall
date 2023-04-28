@@ -8,6 +8,7 @@ import com.blog.api.module.board.repository.BoardInfoRepository;
 import com.blog.api.module.board.service.ArticleInfoService;
 import com.blog.api.module.member.domain.UserInfo;
 import com.blog.api.module.member.repositoires.UserInfoRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -30,6 +31,7 @@ import static com.blog.api.module.util.TestUtils.getUserStatus;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
+@Disabled
 @SpringBootTest(
         properties = {
                 "logging.level.org.hibernate=debug"

@@ -13,7 +13,7 @@ sourceCompatibility = '17'
 ext {
     set('springBootVersion', '3.0.5')
     set('springCloudVersion', '2022.0.1')
-    set('querydslDir', file("build/generated/querydsl"))
+    set('querydslDir', file("./build/generated/querydsl"))
     set('snippetsDir', file("build/generated-snippets"))
     set('querydslVersion', '5.0.0')
     set('logback.version', '1.4.6')

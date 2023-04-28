@@ -42,7 +42,7 @@ public class BaseEntity implements Serializable, Persistable<String> {
 
     @Override
     public String getId() {
-        return getId();
+        return this.id;
     }
 
     @Override

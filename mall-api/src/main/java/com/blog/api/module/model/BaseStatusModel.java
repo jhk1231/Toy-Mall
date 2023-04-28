@@ -18,4 +18,8 @@ public class BaseStatusModel extends BaseEntity {
     public void setStatus(BaseStatus status) {
         this.status = status;
     }
+
+    public BaseStatus getStatus() {
+        return this.status;
+    }
 }
