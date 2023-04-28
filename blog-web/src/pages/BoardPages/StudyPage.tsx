@@ -1,71 +1,73 @@
-import { getItems } from './Board';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { TableListType } from '../../@types/table';
 import { ApiError } from 'essential/error/ApiError';
-import apiService from '../../service/ApiAxiosService';
+import type { RootState } from '../../store/rootReducer';
+import {
+  GetArticleRequestDto,
+  GetArticleResponseDto,
+} from '../../@types/message';
+import { getArticleList } from 'service/ApiAxiosService';
+import { fetchDataSuccess } from 'store/slices/articleReducer';
+import { ArticleType } from '../../@types/domain';
+import Article from 'components/Board/Article';
 
-const DetailPage = () => {
-  const data: Array<TableListType> = [
-    {
-      subject: '[스프링 부트/Spring Boot] 스프링 게시판 만들기',
-      category: 'Spring',
-      date: '20230425',
-      content: '글 내용 미리보기1',
-      img: 'test.png',
-      createAt: '20230425',
-      updateAt: '20230426',
-    },
-    {
-      subject: '[스프링 부트/Spring Boot] JAVA 게시판 만들기',
-      category: 'Spring',
-      date: '20230426',
-      content: '글 내용 미리보기2',
-      img: 'a.png',
-      createAt: '20230425',
-      updateAt: '20230426',
-    },
-    {
-      subject: '[스프링 부트/Spring Boot] Hello 게시판 만들기',
-      category: 'Spring',
-      date: '20230427',
-      content: '글 내용 미리보기3',
-      img: 'spring.png',
-      createAt: '20230425',
-      updateAt: '20230426',
-    },
-  ];
-
-  return (
-    <div>
-      {data.map((item: TableListType) => {
-        return (
-          <>
-            <div className="table__container">
-              <div className="img__container">
-                <img
-                  className="table__img"
-                  src={require(process.env.REACT_APP_IMG_PATH + item.img)}
-                ></img>
-              </div>
-              <div className="table__content">
-                <h3>{item.subject}</h3>
-                <div>
-                  <span>{item.category}</span>
-                  <span>{item.date}</span>
-                </div>
-                <div>
-                  <p>{item.content}</p>
-                </div>
-                <div>
-                  <button>더 읽기</button>
-                </div>
-              </div>
-            </div>
-            <div style={{ clear: 'both' }}></div>
-          </>
-        );
-      })}
-    </div>
+const StudyPage = () => {
+  const dispatch = useDispatch();
+  const state = useSelector(
+    (state: RootState) => state.articleReducer ?? { articleList: [] },
   );
+
+  const createArticleInfo = (
+    responseDto: Array<GetArticleResponseDto>,
+  ): Array<ArticleType> => {
+    const infos: Array<ArticleType> = [];
+    responseDto.forEach((dto) => {
+      let info: ArticleType = {
+        id: dto.articleInfoNo,
+        subject: dto.subject,
+        content: dto.content,
+        issueDate: dto.issueDate,
+        boardInfoNo: dto.boardInfoNo,
+        links: dto.links[0],
+      };
+      infos.push(info);
+    });
+    return infos;
+  };
+
+  useEffect(() => {
+    const fetchBoardData = async () => {
+      try {
+        const requestDto: GetArticleRequestDto = {
+          boardInfoNo: '2dv7cdqle24242ab89e45869ba5f6q33',
+        };
+
+        const response: Array<GetArticleResponseDto> = (
+          await getArticleList(requestDto)
+        ).content;
+
+        console.log('fetchBoardData.response', response);
+        const infos = createArticleInfo(response);
+        console.log('infos', infos);
+        dispatch(fetchDataSuccess(infos));
+      } catch (error: unknown) {
+        if (error instanceof ApiError) {
+          console.log(
+            'Error 발생 [Code:' +
+              error.name +
+              '][message:' +
+              error.message +
+              ']',
+          );
+        }
+      }
+    };
+
+    fetchBoardData();
+  }, []);
+
+  return <Article items={state.articleList} />;
 };
 
-export default DetailPage;
+export default StudyPage;

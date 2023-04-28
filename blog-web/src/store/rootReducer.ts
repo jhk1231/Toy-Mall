@@ -1,6 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import articleReducer from './slices/articleReducer';
 
-const reducer = combineReducers({});
+const reducer = combineReducers({
+  articleReducer,
+});
 
-export type ReducerType = ReturnType<typeof reducer>;
+export type RootState = ReturnType<typeof reducer>;
 export default reducer;

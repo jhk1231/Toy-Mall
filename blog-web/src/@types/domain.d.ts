@@ -1,10 +1,11 @@
 import EntityStatus from '../constants/status';
+import { Link } from '../@types/external';
 
 interface BaseType {
   id: string;
-  status: EntityStatus;
-  createDate: Date;
-  updateDate: Date;
+  status?: EntityStatus;
+  createDate?: Date;
+  updateDate?: Date;
 }
 
 // 유저정보
@@ -28,8 +29,10 @@ export interface BoardType extends BaseType {
 export interface ArticleType extends BaseType {
   subject: string;
   content: string;
-  issueDate: Date;
+  issueDate: string;
   boardInfoNo: string;
+  img?: string;
+  links?: Link;
 }
 
 // 이미지 파일 정보
