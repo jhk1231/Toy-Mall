@@ -31,6 +31,7 @@ public class ArticleInfoQueryRepository {
         final List<ArticleInfoDto> content =
                 jpaQueryFactory.select(Projections.fields(ArticleInfoDto.class,
                                 ai.id.as("articleInfoNo"),
+                                ai.writer.as("writer"),
                                 ai.subject.as("subject"),
                                 ai.content.as("content"),
                                 ai.issueDate.as("issueDate"),

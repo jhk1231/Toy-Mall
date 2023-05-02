@@ -11,6 +11,7 @@ public class ArticleInfoMapper {
         ArticleInfoModel model = new ArticleInfoModel();
         model.setArticleInfoNo(dto.getArticleInfoNo());
         model.setBoardInfoNo(dto.getBoardInfoNo());
+        model.setWriter(dto.getWriter());
         model.setSubject(dto.getSubject());
         model.setContent(dto.getContent());
         model.setIssueDate(dto.getIssueDate());

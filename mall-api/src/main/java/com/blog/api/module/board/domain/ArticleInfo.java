@@ -22,6 +22,11 @@ import static lombok.AccessLevel.PUBLIC;
 @Getter
 public class ArticleInfo extends BaseStatusModel {
 
+
+    @Column(name = "writer", length = 30, nullable = false)
+    @Comment("작성자")
+    private String writer;
+
     @Column(name = "subject", length = 100, nullable = false)
     @Comment("제목")
     private String subject;
@@ -44,10 +49,12 @@ public class ArticleInfo extends BaseStatusModel {
     @Builder(access = PUBLIC)
     ArticleInfo(String subject,
                 String content,
+                String writer,
                 String issueDate,
                 BaseStatus status,
                 BoardInfo boardInfo) {
         this.subject = subject;
+        this.writer =writer;
         this.content = content;
         this.issueDate = issueDate;
         this.setStatus(status);

@@ -1,10 +1,13 @@
 package com.blog.api.module.system;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.PagedModel;
 
 @Getter @Setter
-public class ApiResponseDto<T> {
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+public class PagedApiResponseDto<T> extends PagedModel<T> {
 
     private static final String DEFAULT_CODE = "OK";
     private static final String DEFAULT_MESSAGE = "";
@@ -13,14 +16,14 @@ public class ApiResponseDto<T> {
     private String message = DEFAULT_MESSAGE;
     private T data;
 
-    public ApiResponseDto() {
+    public PagedApiResponseDto() {
     }
 
-    public ApiResponseDto(T data) {
+    public PagedApiResponseDto(T data) {
         this.data = data;
     }
 
-    public ApiResponseDto(String code, String message, T data) {
+    public PagedApiResponseDto(String code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;

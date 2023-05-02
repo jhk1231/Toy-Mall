@@ -4,7 +4,6 @@ import com.blog.api.module.board.controller.ArticleInfoControllerV1;
 import com.blog.api.module.board.controller.dto.ArticleInfoModel;
 import com.blog.api.module.board.dto.ArticleInfoDto;
 import com.blog.api.module.board.mapper.ArticleInfoMapper;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -24,18 +23,6 @@ public class ArticleInfoAssembler
 
     @Override
     public ArticleInfoModel toModel(ArticleInfoDto dto) {
-        ArticleInfoModel model = null;
-        try {
-            model = mapper
-                    .toModel(dto)
-                    .add(
-                            linkTo(methodOn(ArticleInfoControllerV1.class).get(dto.getArticleInfoNo())).withRel("self")
-                    );
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return model;
+        return mapper.toModel(dto).add(linkTo(methodOn(ArticleInfoControllerV1.class).get(dto.getArticleInfoNo())).withSelfRel());
     }
-
 }

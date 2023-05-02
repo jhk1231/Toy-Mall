@@ -6,17 +6,27 @@ import com.blog.api.module.board.dto.ArticleInfoDto;
 import com.blog.api.module.board.service.ArticleInfoService;
 import com.blog.api.module.essential.constants.BaseStatus;
 import com.blog.api.module.system.ApiResponseDto;
+import com.blog.api.module.system.PagedApiResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.parser.Entity;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/article")
@@ -29,7 +39,7 @@ public class ArticleInfoControllerV1 {
     private final PagedResourcesAssembler<ArticleInfoDto> articleInfoDtoPagedResourcesAssembler;
 
     @GetMapping
-    public ResponseEntity<ApiResponseDto<PagedModel<ArticleInfoModel>>>
+    public ResponseEntity<PagedApiResponseDto<PagedModel<ArticleInfoModel>>>
     get(@RequestParam("boardInfoNo") String boardInfoNo,
         @PageableDefault(size = 10, direction = Sort.Direction.DESC) Pageable pageable) {
 
@@ -37,13 +47,12 @@ public class ArticleInfoControllerV1 {
 
         final Page<ArticleInfoDto> serviceResponseDto = articleInfoService.get(boardInfoNo, pageable);
         final PagedModel<ArticleInfoModel> model = articleInfoDtoPagedResourcesAssembler.toModel(serviceResponseDto, articleInfoAssembler);
-        final ApiResponseDto<PagedModel<ArticleInfoModel>> responseDto = new ApiResponseDto<>(model);
+        final PagedApiResponseDto<PagedModel<ArticleInfoModel>> responseDto = new PagedApiResponseDto<>(model);
 
         log.info("Response to get articles. [boardInfoNo:{}]", boardInfoNo);
 
         return ResponseEntity.ok(responseDto);
     }
-
 
     @GetMapping("/{articleInfoNo}")
     public ResponseEntity<ApiResponseDto<ArticleInfoModel>>
@@ -64,6 +73,7 @@ public class ArticleInfoControllerV1 {
         ArticleInfoModel model = new ArticleInfoModel();
         model.setArticleInfoNo(serviceResponseDto.getArticleInfoNo());
         model.setBoardInfoNo(serviceResponseDto.getBoardInfoNo());
+        model.setWriter(serviceResponseDto.getWriter());
         model.setSubject(serviceResponseDto.getSubject());
         model.setContent(serviceResponseDto.getContent());
         model.setIssueDate(serviceResponseDto.getIssueDate());

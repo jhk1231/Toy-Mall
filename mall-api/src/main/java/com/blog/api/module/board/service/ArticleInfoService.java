@@ -50,6 +50,7 @@ public class ArticleInfoService {
         return ArticleInfoDto.builder()
                 .articleInfoNo(info.getId())
                 .boardInfoNo(info.getBoardInfo().getId())
+                .writer(info.getWriter())
                 .subject(info.getSubject())
                 .content(info.getContent())
                 .status(info.getStatus())

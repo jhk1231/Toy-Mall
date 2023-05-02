@@ -19,6 +19,8 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  hateoas:
+    use-hal-as-default-json-media-type: false
 
 logging:
   level:
