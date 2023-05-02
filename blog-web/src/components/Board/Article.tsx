@@ -22,24 +22,17 @@ const Article = ({ items }: ArticleProps) => {
               <div className="table__content">
                 <h3>{item.subject}</h3>
                 <div>
-                  <span>{item.boardInfoNo}</span>
+                  <span>{item.writer}</span>
                   <span>{item.issueDate}</span>
                 </div>
                 <div>
                   <p>{item.content}</p>
                 </div>
                 <div>
-                  <button>
+                  <button className="root_btn bg_black">
                     {item.links && (
-                      // <Link key={item.links.rel} to={item.links.href}>
-                      <Link
-                        key={item.links.rel}
-                        to={{
-                          pathname: '/study/detail',
-                          state: ,
-                        }}
-                      >
-                        더 읽기
+                      <Link className="root_a" to={item.id}>
+                        더 보기
                       </Link>
                     )}
                   </button>

@@ -13,7 +13,13 @@ const SideBar = () => {
   ];
   let depth = 0;
 
-  return <div className="sidebar">{}</div>;
+  return (
+    <div className="rightcolumn">
+      <div className="card">
+        <h3>study</h3>
+      </div>
+    </div>
+  );
 };
 
 export default SideBar;

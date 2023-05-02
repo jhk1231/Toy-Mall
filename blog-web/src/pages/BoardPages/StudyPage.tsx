@@ -25,6 +25,7 @@ const StudyPage = () => {
     responseDto.forEach((dto) => {
       let info: ArticleType = {
         id: dto.articleInfoNo,
+        writer: dto.writer,
         subject: dto.subject,
         content: dto.content,
         issueDate: dto.issueDate,

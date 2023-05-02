@@ -3,7 +3,7 @@ import Footer from './Footer';
 
 const Layout = (props: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className="row">
       <Header />
       <main>{props.children}</main>
       <Footer />

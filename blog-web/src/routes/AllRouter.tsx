@@ -9,14 +9,18 @@ import DetailArticlePage from '../pages/BoardPages/DetailArticlePage';
 // childern배열에 있는 path에 '/'을 추가하면 안된다.
 const AllRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />}></Route>
-      <Route path="/login" element={<LoginPage />}></Route>
-      <Route path="/join" element={<JoinPage />}></Route>
-      <Route path="/study" element={<StudyPage />}></Route>
-      <Route path="/study/detail" element={<DetailArticlePage />} />
-      <Route path="/test" element={<TestPage />}></Route>
-    </Routes>
+    <div className="leftcolumn">
+      <div className="card">
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/join" element={<JoinPage />}></Route>
+          <Route path="/study" element={<StudyPage />}></Route>
+          <Route path="/study/:id" element={<DetailArticlePage />}></Route>
+          <Route path="/test" element={<TestPage />}></Route>
+        </Routes>
+      </div>
+    </div>
   );
 };
 

@@ -7,14 +7,10 @@ import SideBar from 'components/Layout/NavBar/SideBar';
 
 function App() {
   return (
-    <>
-      <Layout>
-        <SideBar />
-        <div className="main-container">
-          <AllRoutes />
-        </div>
-      </Layout>
-    </>
+    <Layout>
+      <AllRoutes />
+      <SideBar />
+    </Layout>
   );
 }
 

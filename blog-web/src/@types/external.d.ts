@@ -1,7 +1,17 @@
 export interface ApiResponseType<T> {
   code: string;
   message: string;
-  data: Data<T>;
+  data: T;
+}
+
+export interface PagedApiResponseType<T> {
+  code: string;
+  message: string;
+  data: EmbeddedData<T>;
+}
+
+interface EmbeddedData<T> {
+  _embedded: Data<T>;
 }
 
 interface Data<T> {
@@ -11,7 +21,17 @@ interface Data<T> {
 }
 
 export interface Link {
-  rel: string;
+  first: Href;
+  self: Href;
+  next: Href;
+  last: Href;
+}
+
+export interface ItemLink {
+  self: Href;
+}
+
+interface Href {
   href: string;
 }
 
